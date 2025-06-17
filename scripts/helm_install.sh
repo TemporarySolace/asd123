@@ -6,7 +6,6 @@ kubectl create namespace istio-system || true
 kubectl create namespace monitoring || true
 kubectl create namespace messaging || true
 kubectl create namespace rabbitmq || true
-
 echo "[INFO] Adding Helm repositories..."
 helm repo add istio https://istio-release.storage.googleapis.com/charts
 helm repo add bitnami https://charts.bitnami.com/bitnami
@@ -19,3 +18,4 @@ helm install ingressgateway istio/gateway -n istio-system
 
 echo "[INFO] Installing RabbitMQ..."
 helm install rabbitmq bitnami/rabbitmq -n rabbitmq --create-namespace -f ../charts/rabbitmq/values-pv.yaml
+kubectl label namespace rabbitmq istio-injection=enabled --overwrite

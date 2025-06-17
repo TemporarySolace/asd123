@@ -11,22 +11,6 @@ spec:
   http:
     - match:
         - uri:
-            prefix: /producer
-      route:
-        - destination:
-            host: producer.producer.svc.cluster.local
-            port:
-              number: 80
-    - match:
-        - uri:
-            prefix: /consumer
-      route:
-        - destination:
-            host: consumer.consumer.svc.cluster.local
-            port:
-              number: 80
-    - match:
-        - uri:
             prefix: /rabbitmq
       route:
         - destination:
