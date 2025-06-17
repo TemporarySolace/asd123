@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: rabbitmq-vs
+  name: rabbitmq-virtualservice
   namespace: rabbitmq
 spec:
   hosts:
@@ -11,7 +11,9 @@ spec:
   http:
     - match:
         - uri:
-            prefix: /rabbitmq
+            prefix: /rabbit
+      rewrite:
+        uri: /
       route:
         - destination:
             host: rabbitmq.rabbitmq.svc.cluster.local

@@ -20,7 +20,7 @@ spec:
           ports:
             - containerPort: 5000
           env:
-            - name: RABBITMQ_HOST
-              value: rabbitmq.messaging.svc.cluster.local
-            - name: RABBITMQ_QUEUE
-              value: default_queue
+            - name: RABBITMQ_USERNAME
+              value: user
+            - name: RABBITMQ_PASSWORD
+              value: bitnami

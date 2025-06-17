@@ -55,12 +55,32 @@ kubectl apply -f ../charts/istio/templates/virtualservices.yaml
 kubectl apply -f ../manifests/rabbitmq/rabbitmq-deployment.yaml
 kubectl apply -f ../manifests/rabbitmq/rabbitmq-service.yaml
 
-kubectl apply -f charts/rabbitmq/templates/service.yaml
-# Output RabbitMQ credentials
-RABBIT_USER=$(kubectl get secret rabbitmq -o jsonpath="{.data.rabbitmq-username}" | base64 --decode)
-RABBIT_PASS=$(kubectl get secret rabbitmq -o jsonpath="{.data.rabbitmq-password}" | base64 --decode)
-echo "RabbitMQ username: $RABBIT_USER"
-echo "RabbitMQ password: $RABBIT_PASS"
+kubectl apply -f ../charts/rabbitmq/templates/service.yaml
+kubectl apply -f ../manifests/rabbitmq/rabbitmq-gateway.yaml
+kubectl apply -f ../manifests/rabbitmq/rabbitmq-virtualservice.yaml
 
-
+#show all pods
+echo "[INFO] Displaying all pods in the cluster..."
+kubectl get pods --all-namespaces
+#show all ips
+echo "[INFO] Displaying all services in the cluster..."
+kubectl get svc --all-namespaces
+#show all gateways
+echo "[INFO] Displaying all gateways in the cluster..."
+kubectl get gateways --all-namespaces
+#show all virtualservices
+echo "[INFO] Displaying all virtual services in the cluster..."
+kubectl get virtualservices --all-namespaces
+#show all deployments
+echo "[INFO] Displaying all deployments in the cluster..."
+kubectl get deployments --all-namespaces
+#show all services
+echo "[INFO] Displaying all services in the cluster..."
+kubectl get services --all-namespaces
+#show all namespaces
+echo "[INFO] Displaying all namespaces in the cluster..."
+kubectl get namespaces
+#show url for RabbitMQ dashboard
+echo "[INFO] RabbitMQ dashboard is accessible at: http://localhost:15672"
+#show url for producer
 echo "[SUCCESS] Deployment complete. You can now test the system via curl or access the dashboard."
