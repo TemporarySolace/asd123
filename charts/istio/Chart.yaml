@@ -1,4 +1,0 @@
-apiVersion: v2
-name: istio
-description: Helm chart to deploy Istio Gateway and VirtualServices
-version: 0.1.0
