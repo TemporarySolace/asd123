@@ -39,16 +39,16 @@ kind load docker-image producer:latest --name test || { echo '[ERROR] Failed to 
 kind load docker-image consumer:latest --name test || { echo '[ERROR] Failed to load consumer image into Kind.'; exit 1; }
 
 # Apply messaging manifests
-kubectl apply -f manifests/messaging/producer-deployment.yaml
-kubectl apply -f manifests/messaging/producer-service.yaml
-kubectl apply -f manifests/messaging/consumer-deployment.yaml
-kubectl apply -f manifests/messaging/consumer-service.yaml
+kubectl apply -f ../manifests/messaging/producer-deployment.yaml
+kubectl apply -f ../manifests/messaging/producer-service.yaml
+kubectl apply -f ../manifests/messaging/consumer-deployment.yaml
+kubectl apply -f ../manifests/messaging/consumer-service.yaml
 
 # Apply messaging ingress configs
-kubectl apply -f manifests/messaging/producer-gateway.yaml
-kubectl apply -f manifests/messaging/producer-virtualservice.yaml
-kubectl apply -f manifests/messaging/consumer-gateway.yaml
-kubectl apply -f manifests/messaging/consumer-virtualservice.yaml
+kubectl apply -f ../manifests/messaging/producer-gateway.yaml
+kubectl apply -f ../manifests/messaging/producer-virtualservice.yaml
+kubectl apply -f ../manifests/messaging/consumer-gateway.yaml
+kubectl apply -f ../manifests/messaging/consumer-virtualservice.yaml
 
 # Output RabbitMQ credentials
 RABBIT_USER=$(kubectl get secret rabbitmq -o jsonpath="{.data.rabbitmq-username}" | base64 --decode)

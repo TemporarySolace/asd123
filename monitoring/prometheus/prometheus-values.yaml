@@ -1,16 +1,35 @@
+alertmanager:
+  enabled: false
+
+pushgateway:
+  enabled: false
+
+kubeStateMetrics:
+  enabled: false
+
+nodeExporter:
+  enabled: false
+
 server:
-  serverFiles:
-    prometheus.yml: |
-      scrape_configs:
-        - job_name: 'rabbitmq'
-          static_configs:
-            - targets: ['producer.messaging.svc.cluster.local:5000'] # Replace with your RabbitMQ service FQDN and metrics port (usually 15692)
-        - job_name: 'service-2'
-          static_configs:
-            - targets: ['service-2-name:port']
-        - job_name: 'service-3'
-          static_configs:
-            - targets: ['service-3-name:port']
-        - job_name: 'service-4'
-          static_configs:
-            - targets: ['service-4-name:port']
+  global:
+    scrape_interval: 15s
+
+  service:
+    type: ClusterIP
+    port: 9090
+
+  extraScrapeConfigs:
+    - job_name: 'producer'
+      metrics_path: /metrics
+      static_configs:
+        - targets:
+            - producer.messaging.svc.cluster.local:8000
+
+    - job_name: 'consumer'
+      metrics_path: /metrics
+      static_configs:
+        - targets:
+            - consumer.messaging.svc.cluster.local:8001
+
+  ingress:
+    enabled: false  # Istio will handle ingress, so native Ingress is disabled

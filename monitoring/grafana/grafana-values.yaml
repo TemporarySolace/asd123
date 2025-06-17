@@ -1,0 +1,25 @@
+replicas: 1
+
+service:
+  type: ClusterIP
+  port: 3000
+
+adminUser: admin
+adminPassword: admin
+
+# Enable Prometheus metrics exporter
+metrics:
+  enabled: true
+  service:
+    enabled: true
+    annotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "3000"
+  serviceMonitor:
+    enabled: false
+
+grafana.ini:
+  server:
+    root_url: http://grafana.local
+  auth.anonymous:
+    enabled: true

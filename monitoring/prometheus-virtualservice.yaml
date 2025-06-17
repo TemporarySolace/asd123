@@ -5,17 +5,15 @@ metadata:
   namespace: monitoring
 spec:
   hosts:
-    - "*"
+    - "prometheus.local"
   gateways:
     - prometheus-gateway
   http:
     - match:
         - uri:
-            prefix: /prometheus
-      rewrite:
-        uri: /
+            prefix: /
       route:
         - destination:
             host: prometheus-server.monitoring.svc.cluster.local
             port:
-              number: 80
+              number: 9090

@@ -8,8 +8,8 @@ spec:
     istio: ingressgateway
   servers:
     - port:
-        number: 9090
+        number: 80
         name: http
         protocol: HTTP
       hosts:
-        - "*"
+        - "prometheus.local"
