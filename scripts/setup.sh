@@ -44,9 +44,7 @@ kubectl apply -f ../manifests/messaging/consumer-virtualservice.yaml
 kubectl apply -f ../charts/istio/templates/gateway.yaml
 kubectl apply -f ../charts/istio/templates/virtualservices.yaml
 # Apply RabbitMQ manifests
-kubectl apply -f ../manifests/rabbitmq/rabbitmq-deployment.yaml
-kubectl apply -f ../manifests/rabbitmq/rabbitmq-service.yaml
-
+kubectl apply -f ../charts/rabbitmq/templates/deployment.yaml
 kubectl apply -f ../charts/rabbitmq/templates/service.yaml
 kubectl apply -f ../manifests/rabbitmq/rabbitmq-gateway.yaml
 kubectl apply -f ../manifests/rabbitmq/rabbitmq-virtualservice.yaml
