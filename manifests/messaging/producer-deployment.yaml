@@ -21,10 +21,10 @@ spec:
             - containerPort: 5000
           env:
             - name: RABBITMQ_USERNAME
-              value: user
+              value: "user"
             - name: RABBITMQ_PASSWORD
-              value: bitnami
+              value: "bitnami"
             - name: RABBITMQ_HOST
-              value: rabbitmq.messaging.svc.cluster.local
+              value: "rabbitmq.messaging.svc.cluster.local"
             - name: RABBITMQ_PORT
               value: "5672"
