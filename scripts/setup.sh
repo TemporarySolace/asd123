@@ -12,11 +12,6 @@ source ./precheck.sh
 echo "[INFO] Installing Helm charts (Istio, RabbitMQ)..."
 source ./helm_install.sh
 
-# === Namespace setup ===
-echo "[INFO] Setting up producer and consumer namespaces..."
-source ./setup_producer_namespace.sh
-source ./setup_consumer_namespace.sh
-
 # === Telemetry setup ===
 echo "[INFO] Configuring monitoring and telemetry..."
 source ./telemetry_setup.sh
