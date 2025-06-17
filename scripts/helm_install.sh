@@ -26,7 +26,9 @@ echo "[INFO] Installing RabbitMQ..."
 helm install rabbitmq bitnami/rabbitmq -n rabbitmq --create-namespace -f ../manifests/rabbitmq/values.yaml
 kubectl label namespace rabbitmq istio-injection=enabled --overwrite
 
-helm repo add kiali https://kiali.org/helm-charts
-helm repo update
-
-helm install --namespace istio-system kiali-server kiali/kiali-server --create-namespace
+helm install \
+  --namespace istio-system \
+  --set auth.strategy="anonymous" \
+  --repo https://kiali.org/helm-charts \
+  kiali-server \
+  kiali-server
