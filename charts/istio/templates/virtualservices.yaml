@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: grafana-vs
+  name: istio-vs
   namespace: istio-system
 spec:
   hosts:
@@ -9,16 +9,6 @@ spec:
   gateways:
     - main-gateway
   http:
-    - match:
-        - uri:
-            exact: /
-      rewrite:
-        uri: /d/grafana
-      route:
-        - destination:
-            host: grafana.istio-system.svc.cluster.local
-            port:
-              number: 80
     - match:
         - uri:
             prefix: /producer

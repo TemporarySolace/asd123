@@ -10,8 +10,6 @@ kubectl create namespace rabbitmq || true
 echo "[INFO] Adding Helm repositories..."
 helm repo add istio https://istio-release.storage.googleapis.com/charts
 helm repo add bitnami https://charts.bitnami.com/bitnami
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 
 echo "[INFO] Installing Istio components..."
@@ -21,8 +19,3 @@ helm install ingressgateway istio/gateway -n istio-system
 
 echo "[INFO] Installing RabbitMQ..."
 helm install rabbitmq bitnami/rabbitmq -n rabbitmq --create-namespace -f ../charts/rabbitmq/values-pv.yaml
-
-echo "[INFO] Installing Prometheus..."
-helm install prometheus prometheus-community/prometheus -n monitoring --create-namespace -f ../monitoring/prometheus/prometheus-values.yaml
-helm install grafana grafana/grafana -n monitoring -f ../monitoring/grafana/grafana-values.yaml
-echo "[INFO] Installing

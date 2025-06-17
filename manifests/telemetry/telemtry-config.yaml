@@ -9,4 +9,5 @@ metadata:
   name: telemetry-config
 data:
   config.yaml: |
+
     # telemetry config contents

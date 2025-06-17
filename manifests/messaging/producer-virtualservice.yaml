@@ -7,7 +7,7 @@ spec:
   hosts:
     - "*"
   gateways:
-    - producer-gateway
+    - isitio-system/main-gateway
   http:
     - match:
         - uri:
