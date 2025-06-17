@@ -5,7 +5,7 @@ echo "[INFO] Starting full system setup..."
 
 # === Pre-checks ===
 echo "[INFO] Running environment pre-checks..."
-source ./prechecks.sh
+source ./precheck.sh
 
 
 # === Helm components installation ===
@@ -30,8 +30,8 @@ echo "[INFO] System should now be accessible via Istio ingress."
 
 # === Docker image build ===
 echo "[INFO] Building Docker images..."
-docker build -t producer:latest ./docker/producer || { echo '[ERROR] Failed to build producer image.'; exit 1; }
-docker build -t consumer:latest ./docker/consumer || { echo '[ERROR] Failed to build consumer image.'; exit 1; }
+docker build -t producer:latest ../docker/producer || { echo '[ERROR] Failed to build producer image.'; exit 1; }
+docker build -t consumer:latest ../docker/consumer || { echo '[ERROR] Failed to build consumer image.'; exit 1; }
 
 # === Load images into Kind ===
 echo "[INFO] Loading images into Kind cluster..."
@@ -49,7 +49,13 @@ kubectl apply -f ../manifests/messaging/producer-gateway.yaml
 kubectl apply -f ../manifests/messaging/producer-virtualservice.yaml
 kubectl apply -f ../manifests/messaging/consumer-gateway.yaml
 kubectl apply -f ../manifests/messaging/consumer-virtualservice.yaml
+kubectl apply -f ../charts/istio/templates/gateway.yaml
+kubectl apply -f ../charts/istio/templates/virtualservices.yaml
+# Apply RabbitMQ manifests
+kubectl apply -f ../manifests/rabbitmq/rabbitmq-deployment.yaml
+kubectl apply -f ../manifests/rabbitmq/rabbitmq-service.yaml
 
+kubectl apply -f charts/rabbitmq/templates/service.yaml
 # Output RabbitMQ credentials
 RABBIT_USER=$(kubectl get secret rabbitmq -o jsonpath="{.data.rabbitmq-username}" | base64 --decode)
 RABBIT_PASS=$(kubectl get secret rabbitmq -o jsonpath="{.data.rabbitmq-password}" | base64 --decode)

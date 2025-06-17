@@ -35,3 +35,11 @@ spec:
             host: consumer.consumer.svc.cluster.local
             port:
               number: 80
+    - match:
+        - uri:
+            prefix: /rabbitmq
+      route:
+        - destination:
+            host: rabbitmq.rabbitmq.svc.cluster.local
+            port:
+              number: 15672
