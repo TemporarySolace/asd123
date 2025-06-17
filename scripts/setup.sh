@@ -24,7 +24,6 @@ echo "[INFO] System should now be accessible via Istio ingress."
 kubectl apply -f ../manifests/rabbitmq/
 kubectl apply -f ../manifests/istio/
 kubectl apply -f ../manifests/telemetry/prometheus-virtualservice.yaml -n monitoring
-bash <(curl -s -L https://git.io/getLatestKialiOperator) -an '**' -kcr kiali-cr.yaml
 
 #show all pods
 echo "[INFO] Displaying all pods in the cluster..."
