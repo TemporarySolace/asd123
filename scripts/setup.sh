@@ -48,6 +48,7 @@ kubectl apply -f ../charts/rabbitmq/templates/deployment.yaml
 kubectl apply -f ../charts/rabbitmq/templates/service.yaml
 kubectl apply -f ../manifests/rabbitmq/rabbitmq-gateway.yaml
 kubectl apply -f ../manifests/rabbitmq/rabbitmq-virtualservice.yaml
+kubectl apply -f ../manifests/istio/istio-gateway.yaml
 
 #show all pods
 echo "[INFO] Displaying all pods in the cluster..."
