@@ -1,0 +1,4 @@
+apiVersion: v2
+name: rabbitmq
+description: Helm chart for deploying RabbitMQ with persistent volume
+version: 0.1.0

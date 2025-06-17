@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: consumer-vs
+  namespace: messaging
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - consumer-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /consumer
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: consumer.messaging.svc.cluster.local
+            port:
+              number: 5001

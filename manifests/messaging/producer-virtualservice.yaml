@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: producer-vs
+  namespace: messaging
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - producer-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /producer
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: producer.messaging.svc.cluster.local
+            port:
+              number: 5000

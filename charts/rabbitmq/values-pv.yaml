@@ -1,0 +1,46 @@
+auth:
+  username: user
+  password: bitnami
+  erlangCookie: secretcookie
+
+service:
+  type: ClusterIP
+  port: 5672
+  nodePorts:
+    amqp: ""
+
+extraPlugins: "rabbitmq_management rabbitmq_peer_discovery_k8s"
+
+persistence:
+  enabled: true
+  storageClass: "standard"
+  accessMode: ReadWriteOnce
+  size: 1Gi
+
+resources:
+  limits:
+    memory: 512Mi
+    cpu: 500m
+  requests:
+    memory: 256Mi
+    cpu: 250m
+
+livenessProbe:
+  enabled: true
+readinessProbe:
+  enabled: true
+
+rbac:
+  create: true
+
+serviceAccount:
+  create: true
+
+podSecurityContext:
+  fsGroup: 1001
+
+containerSecurityContext:
+  runAsUser: 1001
+  
+metrics:
+  enabled: true
