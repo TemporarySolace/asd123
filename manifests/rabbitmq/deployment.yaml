@@ -27,3 +27,13 @@ spec:
         - name: rabbitmq-storage
           persistentVolumeClaim:
             claimName: rabbitmq-pvc
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: rabbitmq
+  namespace: rabbitmq
+  annotations:
+    traffic.sidecar.istio.io/includeInboundPorts: "5672,15672"
+    traffic.sidecar.istio.io/includeOutboundPorts: "5672,15672"
