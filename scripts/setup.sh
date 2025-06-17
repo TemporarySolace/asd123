@@ -5,25 +5,25 @@ echo "[INFO] Starting full system setup..."
 
 # === Pre-checks ===
 echo "[INFO] Running environment pre-checks..."
-source ./scripts/prechecks.sh
+source ./prechecks.sh
 
 
 # === Helm components installation ===
 echo "[INFO] Installing Helm charts (Istio, RabbitMQ)..."
-source ./scripts/helm_install.sh
+source ./helm_install.sh
 
 # === Namespace setup ===
 echo "[INFO] Setting up producer and consumer namespaces..."
-source ./scripts/setup_producer_namespace.sh
-source ./scripts/setup_consumer_namespace.sh
+source ./setup_producer_namespace.sh
+source ./setup_consumer_namespace.sh
 
 # === Telemetry setup ===
 echo "[INFO] Configuring monitoring and telemetry..."
-source ./scripts/telemetry_setup.sh
+source ./telemetry_setup.sh
 
 # === Wait for pods to be ready ===
 echo "[INFO] Waiting for all pods to become ready..."
-source ./scripts/wait_for_pods.sh
+source ./wait_for_pods.sh
 
 echo "[INFO] System should now be accessible via Istio ingress."
 
