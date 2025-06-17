@@ -12,9 +12,6 @@ source ./precheck.sh
 echo "[INFO] Installing Helm charts (Istio, RabbitMQ)..."
 source ./helm_install.sh
 
-# === Telemetry setup ===
-echo "[INFO] Configuring monitoring and telemetry..."
-source ./telemetry_setup.sh
 
 # === Wait for pods to be ready ===
 echo "[INFO] Waiting for all pods to become ready..."
