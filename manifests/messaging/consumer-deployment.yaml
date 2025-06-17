@@ -25,3 +25,7 @@ spec:
             - name: RABBITMQ_PASSWORD
               value:
                 password: bitnami
+            - name: RABBITMQ_HOST
+              value: rabbitmq.messaging.svc.cluster.local
+            - name: RABBITMQ_PORT
+              value: "5672"

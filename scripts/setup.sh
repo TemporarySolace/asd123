@@ -23,7 +23,7 @@ source ./telemetry_setup.sh
 
 # === Wait for pods to be ready ===
 echo "[INFO] Waiting for all pods to become ready..."
-source ./wait_for_pods.sh
+source ./wait_for_pods.sh istio-system
 
 echo "[INFO] System should now be accessible via Istio ingress."
 

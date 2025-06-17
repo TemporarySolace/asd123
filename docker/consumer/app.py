@@ -1,11 +1,19 @@
 import pika, os
 
-RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "rabbitmq.rabbitmq.svc.cluster.local")
 RABBITMQ_QUEUE = os.getenv("RABBITMQ_QUEUE", "default_queue")
+rabbitmq_user = os.environ.get("RABBITMQ_USERNAME")
+rabbitmq_pass = os.environ.get("RABBITMQ_PASSWORD")
+rabbitmq_host = os.environ.get("RABBITMQ_HOST")
+rabbitmq_port = int(os.environ.get("RABBITMQ_PORT"))
 
-connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host="rabbitmq.rabbitmq.svc.cluster.local")
+credentials = pika.PlainCredentials(rabbitmq_user, rabbitmq_pass)
+parameters = pika.ConnectionParameters(
+    host=rabbitmq_host,
+    port=rabbitmq_port,
+    credentials=credentials
 )
+
+connection = pika.BlockingConnection(parameters)
 channel = connection.channel()
 channel.queue_declare(queue=RABBITMQ_QUEUE, durable=True)
 
